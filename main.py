@@ -60,7 +60,8 @@ def do_the_stuff():
         lambda entry: (
             entry["title"].count(" ") > 3
             and
-            set(entry["title"].lower().replace("<b>", "").replace("</b>", "").split()).intersection(["open", "access"])
+            # Use this one only if google alerts gives you irrelevant results:
+            # set(entry["title"].lower().replace("<b>", "").replace("</b>", "").split()).intersection([your keywords here])
             and
             not any([w in entry["link"] for w in banned_words])
         ),
