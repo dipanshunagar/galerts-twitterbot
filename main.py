@@ -36,7 +36,7 @@ def working(url):
 
 def already_posted(url):
     """Checks if the exact same url has already been posted in a previous run"""
-    tweets = api.user_timeline(api.me().id_str)  # Brings the last 20 tweets
+    tweets = api.user_timeline(me.id_str)  # Brings the last 20 tweets
     base_domain = url.split("/")[2]
     for t in tweets:
         try:
