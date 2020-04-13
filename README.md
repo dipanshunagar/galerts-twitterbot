@@ -10,7 +10,7 @@ A twitter bot backend to fetch URLs from google alerts and push them out as twee
 
 3. Set up a heroku application and push these files into it.
 
-4. Visit `<your app name>.herokuapp.com/new/autotweet/` in a browser to test. It should give a JSON response with a status and tweet count.
+4. Visit `<your app name>.herokuapp.com/news/autotweet/` in a browser to test. It should give a JSON response with a status and tweet count.
 
 5. Now we need to call this endpoint in regular intervals. Go to script.google.com, create a new project. Enter the following code and plug in your heroku app URL:
 ```
