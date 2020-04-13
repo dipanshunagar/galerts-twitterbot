@@ -59,8 +59,8 @@ def do_the_stuff():
     entries = filter(
         lambda entry: (
             entry["title"].count(" ") > 3
-            and
             # Use this one only if google alerts gives you irrelevant results:
+            # and
             # set(entry["title"].lower().replace("<b>", "").replace("</b>", "").split()).intersection([your keywords here])
             and
             not any([w in entry["link"] for w in banned_words])
