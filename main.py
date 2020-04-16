@@ -34,18 +34,24 @@ def working(url):
     return requests.get(url).status_code == 200
 
 
-def already_posted(url):
-    """Checks if the exact same url has already been posted in a previous run"""
+def already_posted(url, title=""):
+    """Checks if the same url/title has already been posted in a previous run"""
+
     tweets = api.user_timeline(me.id_str)  # Brings the last 20 tweets
     base_domain = url.split("/")[2]
+    title = title.lower().replace("<b>", "").replace("</b>", "")
+    title_words = set(title.split())
     for t in tweets:
         try:
             if url == t.entities['urls'][0]["expanded_url"]:
                 return True
-            # You may not need this check, but it was relevant to my use case:
             if base_domain in t.entities['urls'][0]["expanded_url"]:
                 return True
-        except IndexError:  # In case an old tweet doesn't have a URL, can occur if you tweet manually too.
+            text2 = t.text.replace("#OpenScience ", "")
+            text2 = text2[:text2.index("https")].lower().replace("<b>", "").replace("</b>", "")
+            if title != "" and len((title_words.intersection(text2.split()))) > 0.6*len(title_words):
+                return True
+        except IndexError:
             pass
     return False
 
@@ -73,7 +79,7 @@ def do_the_stuff():
         if not working(actual_url) or len(actual_url) < 25:
             print("NOT WORKING:", actual_url, "\n")
             continue
-        if already_posted(actual_url):
+        if already_posted(actual_url, entry["title"]):
             print("Already posted:", actual_url, "\n")
             continue
         if not actual_url.startswith("http"):

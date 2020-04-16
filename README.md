@@ -6,7 +6,7 @@ A twitter bot backend to fetch URLs from google alerts and push them out as twee
 
     Remember to copy the RSS Feed URL once the GAlert is saved, using the RSS icon in the list of you set alerts.
 
-2. Sign up for twitter dev account, create an application and enter the api connection credentials in main.py
+2. Sign up for a twitter dev account (using the bot's twitter account for simplicity), create an application and enter the api connection credentials in main.py
 
 3. Set up a heroku application and push these files into it.
 
